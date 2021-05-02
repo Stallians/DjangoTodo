@@ -1,0 +1,33 @@
+<h1>To Do Tasks</h1>
+<a href="{%url 'add_task'%}">Add Task</a>
+
+<h3>Open Tasks: {{open_tasks|length}}</h3>
+{%if open_tasks%}
+<ul>
+    {%for task in open_tasks%}
+    <li>
+        {{task.description}} &ensp;
+        <a href="{% url 'toggle_status' task.id %}">Close</a>
+        <a href="{% url 'edit_task' task.id %}">Edit</a>
+        <a href="{% url 'delete_task' task.id %}">Delete</a>
+    </li>
+    {%endfor%}
+</ul>
+{%else%}
+<p><strong>No any open tasks found</strong></p>
+{%endif%}
+
+<h3>Completed Tasks: {{closed_tasks|length}}</h3>
+{%if closed_tasks%}
+<ul>
+    {%for task in closed_tasks%}
+    <li>
+        {{task.description}} &ensp;
+        <a href="{% url 'toggle_status' task.id %}">Open</a>
+        <a href="{% url 'delete_task' task.id %}">Delete</a>
+    </li>
+    {%endfor%}
+</ul>
+{%else%}
+<p><strong>No any Completed tasks found</strong></p>
+{%endif%}

@@ -1,0 +1,9 @@
+<h1>Add Tasks</h1>
+
+<form action="{% url 'add_task'%}" method="POST">
+    {%csrf_token%}
+    <input type="text" name="task" id='task' placeholder="enter your task" />
+    <input type="submit" name="submit" value="Add">
+</form>
+
+<a href="{% url 'alltasks'%}">Back</a>

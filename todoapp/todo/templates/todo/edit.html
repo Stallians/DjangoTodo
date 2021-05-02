@@ -1,0 +1,16 @@
+<h1>Edit Task</h1>
+
+<form action="{% url 'edit_task' task.id%}" method="POST">
+    {%csrf_token%}
+    <label for="description">Description: </label> &ensp;
+    <input type="text" name="description" id='description' placeholder="{{task.description}}" />
+    <br />
+
+    <label for="is_complete">Completed: </label> &ensp;
+    <input type="radio" name="is_complete" id='is_complete' value=True /> True
+    <input type="radio" name="is_complete" id='is_complete' value=False /> False
+    <br />
+    <input type="submit" name="submit" value="Edit">
+</form>
+
+<a href="{% url 'alltasks'%}">Back</a>

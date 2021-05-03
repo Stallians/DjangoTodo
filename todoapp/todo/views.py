@@ -1,5 +1,7 @@
 from django.shortcuts import render, reverse, get_object_or_404
 from django.http import HttpResponseRedirect
+from rest_framework import viewsets
+from .serializers import TaskSerializer
 from .models import Task
 
 
@@ -45,3 +47,8 @@ def delete(request, taskid):
     task = get_object_or_404(Task, id=taskid)
     task.delete()
     return HttpResponseRedirect(reverse("alltasks"))
+
+
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
